@@ -1,0 +1,499 @@
+<div id='form'>
+    <div id='menubtn'>
+        <div onclick="createMenuPopup('bot_info')"> <i class="fas fa-info"></i></div>
+        <p class="menu-head-info simple" onclick="toSimple()">Простой</p>
+        <p class="menu-head-info pro" onclick="toPro()">Расширенный</p>
+        <div onclick="hideMenu()"> <i class="fas fa-times"></i></div>
+
+
+    </div>
+
+    <div id='room' flex>
+        <select class="menu_select" id='room_size'>
+            <option>8</option>
+            <option>12</option>
+            <option>16</option>
+            <option>20</option>
+            <option value="any">Любой размер</option>
+        </select>
+
+        <select class="menu_select" id='room_league'>
+
+            <option value="1">Бронза</option>
+            <option value="2">Серебро</option>
+            <option value="3">Золото</option>
+            <option value="any">Любая лига</option>
+            <option value="not_me">Любая, кроме своей</option>
+        </select>
+
+        <select class="menu_select" id='room_type'>
+            <option>Входить ко всем</option>
+            <option>Входить к супругу</option>
+            <option>Входить по нику или хвостом</option>
+            <option>Игра на арене</option>
+            <option>Создавать комнату</option>
+            <option>Игра с супругом</option>
+            <option>Входить к чужим</option>
+            <option>Арена + Ко всем</option>
+            <option>Арена + Создавать</option>
+            <option>Входить в заполненные</option>
+            <option>Ничего не делать</option>
+        </select>
+    </div>
+
+    <div class="menu-body">
+        <h4 onclick='hideElem("input", this)'>Вводимые значения <a class='show_button'>-</a></h4>
+        <div id='input'>
+            <div class="input-elem">
+                <label>Брать аук</label>
+                <div>
+                    <input class='inputtext' type='text' value='' id='takeAutInp'>
+                    <input class='inputtext' type='text' value='200' placeholder='Ставка' id='takeAutInpMax'>
+                    <input type='checkbox' id='getAuk'>
+                </div>
+            </div>
+
+            <div class="input-elem">
+                <label>Брать аук досрочно</label>
+                <div>
+                    <input class='inputtext' type='text' value='' id='takeAutDosrInp'>
+                    <input type='checkbox' id='getAukDosr' onchange='startDosrAuk()'>
+                </div>
+            </div>
+
+            <div class="input-elem">
+                <label>Ник созда/ID хвоста</label>
+                <div>
+                    <input class='inputtext' type='text' value='Ник или ID' id='nickInp'>
+                    <input type='checkbox' disabled checked>
+                </div>
+            </div>
+
+            <div class="input-elem">
+                <label>Приват в вк (цифры)
+                    <a style="font-size: 20px" onclick="showInstruction()">?</a></label>
+                <div>
+                    <input class='inputtext' type='text' value='ID вк (цифры)' id='vk_id'>
+                    <input type='checkbox' id='vk_id_checkbox'>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <h4 onclick='hideElem("buttons", this)' class='show_button misc buttons'>Кнопки <a>-</a> </h4>
+        <div id="buttons" class='buttons-block'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("presents");' value='Дарить подарки'>
+            <input class='menu_btn' type='button' onclick='perebros()' value='Переброс с вечки'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("clan")' value='Клан в чс'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("clan_list")' value='Список клана'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("offline_player")'
+                value='Найти игрока оффлайн'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("from_vk")'
+                value='Найти игрока по ссылке вк'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("big_eggs")' value='Царапины в сокланов'>
+
+            <input class='menu_btn' type='button' onclick='createMenuPopup("prof_from_id")'
+                value='Открыть профиль по ID'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("listen")' value='Прослушка кланчатов'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("my_vk")' value='Мой вк'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("load_settings")'
+                value='Загрузка чужих настроек'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("custom_extra_position")'
+                value='Расположение экстр'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("transfer")' value='Участие в обмене'>
+            <input class='menu_btn' type='button' onclick='createMenuPopup("reset")' value='Сброс настроек'>
+        </div>
+        <hr>
+        <h4 onclick='hideElem("misc", this)' class='show_button misc'>Разное <a>-</a> </h4>
+        <div id='misc' flex>
+
+            <li class='autovote_li'>
+                <input type='checkbox' id='autovote'>
+                <label> Голос:</label>
+                <select class="menu_select" id='autovote_select'>
+                    <option>По роли</option>
+                    <option>Отключен</option>
+                    <option>Под себя</option>
+                    <option>В созда</option>
+                </select>
+            </li>
+
+
+            <li>
+                <input type='checkbox' id='active_control'>
+                <label> Контроль активности:</label>
+                <select class="menu_select" id='active_control_select'>
+                    <option value="900">15 минут</option>
+                    <option value="1800">30 минут</option>
+                    <option value="3600">1 час</option>
+                    <option value="7200">2 часа</option>
+                    <option value="14400">4 часа</option>
+                </select>
+            </li>
+
+            <li>
+                <input type='checkbox' id='autobugs'>
+                <label>Жуки в:</label>
+                <select class="menu_select" id='autobugs_select'>
+                    <option>На ник</option>
+                    <option>В активов</option>
+                    <option>Случайно</option>
+                    <option>В созда</option>
+                    <option>В Босса</option>
+                    <option>В Маньяка</option>
+                    <option>Под себя</option>
+                </select>
+            </li>
+
+            <li><input type='checkbox' id='botStyle'> <label for='botStyle'>Режим бота</label></li>
+
+
+            <li><input type='checkbox' id='task'> <label for='task'>Клановые заданки</label></li>
+            <li><input type='checkbox' id='eventTask'> <label for='eventTask'>ивент. заданки</label></li>
+
+
+
+
+            <li><input type='checkbox' id='autostart'> <label for='autostart'>Автостарт при запуске</label></li>
+            <li><input type='checkbox' id='autostartDuel'> <label for='autostartDuel'>Автостарт дуэли при
+                    запуске</label></li>
+
+
+            <li><input type='checkbox' id='autoExit' checked> <label for='autoExit'>Автовыход</label></li>
+            <li><input type='checkbox' id='greenAnswer' checked> <label for='greenAnswer'>Откидывать
+                    пушки/бочки</label></li>
+
+            <!--<li><input type='checkbox' id='getCompleteEventTask' checked> <label for='getCompleteEventTask'>Забирать награду за квесты</label></li>-->
+            <li><input type='checkbox' id='isTaro'> <label for='isTaro'>Таро на маф</label></li>
+            <li><input type='checkbox' id='exitTimeout'> <label for='exitTimeout'>Задержка при выходе</label></li>
+            <li><input type='checkbox' id='isSuicide'> <label for='isSuicide'>Автосуик</label></li>
+
+
+            <!--<li><input type='checkbox' id='auto_power' checked> <label for='auto_power' checked>Автовыбор способности</label></li>-->
+            <!--<li><input type='checkbox' id='isPlayPunish' checked > <label for='isPlayPunish'>Автовыбор наказания</label></li>-->
+            <!--<li><input type='checkbox' id='isPlayDog' checked> <label for='isPlayDog'>Стрелять за бешеных псов</label></li>-->
+            <!--<li><input type='checkbox' id='isPlayShoot' checked> <label for='isPlayShoot'>Стрелять в перестрелке</label></li>-->
+            <!--<li><input type='checkbox' id='ispaEvent' > <label for='akaEvent'>Кидать испы(ивент)</label></li>-->
+            <!--<li><input type='checkbox' id='isCutBomb' checked> <label for='isCutBomb'>Обезвреживать бомбы</label></li>-->
+
+
+            <!--<input type='checkbox' id='change_power'>
+            <label>Менять силу:</label>
+            <select class="menu_select" id='change_power_select'>
+                <option value="1">Заложники</option>
+                <option value="2">Бешеный пёс</option>
+                <option value="3">Мгновенный выстрел</option>
+                <option value="4">Второй револьвер</option>
+                <option value="5">Гора динамита</option>
+                <option value="6">Рикошет</option>
+                <option value="7">Перестрелка</option>
+                <option value="8">Змеиный яд</option>
+            </select>
+
+            <select class="menu_select" id='change_power_select_2'>
+                <option value="9">Маркировка</option>
+                <option value="10">Текила</option>
+                <option value="11">Орлиный глаз</option>
+                <option value="12">Прицельный выстрел</option>
+                <option value="13">Стань бандитом!</option>
+                <option value="14">Подслушано</option>
+                <option value="15">Отмычки</option>
+                <option value="16">Полевой доктор</option>
+            </select>
+            </li>-->
+
+
+            <!--<input type='checkbox' id='change_power'>
+            <label>Менять силу:</label>
+            <select class="menu_select" id='change_power_select'>
+                <option value="1">Ядовитая бомба</option>
+                <option value="2">Цепная заморозка</option>
+                <option value="3">Атомная бомба</option>
+                <option value="4">Бомба раскрытия роли</option>
+                <option value="5">Бомба лишения хода</option>
+                <option value="6">Связывающая бомба</option>
+                <option value="7">Усыпляющая бомба</option>
+                <option value="8">Бомба мести</option>
+                <option value="9">Подлая бомба</option>
+            </select>
+            </li>
+              
+            <li>  
+            <input type='checkbox' id='change_power'>
+            <label>Менять силу:</label>
+            <select class="menu_select" id='change_power_select'>
+                <option value="1">Бессмертие</option>
+                <option value="2">Ночной кошмар</option>
+                <option value="3">Интуиция</option>
+                <option value="4">Идеальный убийца</option>
+                <option value="5">Двойной удар/option>
+            </select>
+            </li>-->
+            <!--<li><input type='checkbox' id='isCollectAll' checked> <label for='isCollectAll'>Собирать
+							карты</label></li>-->
+
+            <!--<li><input type='checkbox' id='openChest' checked> <label for='openChest'>Открывать квестовый сундук </label></li>-->
+            <!--<li><input type='checkbox' id='getGems' checked> <label for='getGems'>Собирать самоцветы</label></li>-->
+            <li><input type='checkbox' id='isBreakEgg' checked> <label for='isBreakEgg'>Открывать комнатный
+                    сундук</label></li>
+            <!-- <li><input type='checkbox' id='answerEraser'> <label for='answerEraser'>Отвечать на броски</label>
+            </li>-->
+            <li><input type='checkbox' id='isPlayBones' checked> <label for='isPlayBones'>Играть в кости</label></li>
+			
+
+            <!--<li><input type='checkbox' id='nyEvent' > <label for='nyEvent'>Открывать морковки</label></li>-->
+
+
+
+            <li><input type='checkbox' id='isEventMask'> <label for='isEventMask'>Брать маски(ивент)</label>
+            </li>
+            <li><input type='checkbox' id='akaEvent'> <label for='akaEvent'>Исп. Ака(ивент)</label></li>
+            <li><input type='checkbox' id='isEventTaro'> <label for='isEventTaro'>Таро на маф(ивент)</label>
+            </li>
+
+        </div>
+
+        <hr>
+
+        <h4 onclick='hideElem("duels_menu", this)' class="show_button misc">Дуэли и квесты <a>-</a></h4>
+        <div id='duels_menu' flex>
+            <li><input type='checkbox' id='isCanChangeRoomSize'> <label for='isCanChangeRoomSize'>Разрешать менять
+                    размер комнаты</label></li>
+            <li><input type='checkbox' id='isCanChangeTaskByRuby'> <label for='isCanChangeTaskByRuby'>Разрешать менять
+                    дуэльное задание за рубин</label></li>
+            <!--<li><input type='checkbox' id='eventTask'> <label for='eventTask'>Автовыполнение ивентовых квестов</label>
+            </li>-->
+
+
+            <a onclick="$('#duel_quest_menu').show()" class='show_button quest'>Дуэльные квесты+</a>
+            <a onclick="$('#quest_menu').show()" class='show_button quest'>ивентовые квесты+</a>
+            <!--<h4>Квесты <a class='show_button quest' onclick="$('#quest_menu').show()">+</a></h4>-->
+        </div>
+        <hr>
+
+
+        <h4 onclick='hideElem("optim", this)' class="show_button misc">Оптимизация <a>-</a></h4>
+        <div id='optim' flex>
+
+            <li><input type='checkbox' id='isOptimSound' onchange='optimMaf()'> <label for='isOptimSound'>Отключить
+                    звук</label></li>
+            <li><input type='checkbox' id='isOptimGifts' onchange='optimMaf()'> <label for='isOptimGifts'>Отключить
+                    подарки</label></li>
+
+
+
+            <!--<li><input type='checkbox' id='isOptimAnim' onchange='optimMaf()'> <label for='isOptimAnim'>Отключить анимацию</label></li> -->
+            <!--<li><input type='checkbox' id='isOptimExtra' onchange='optimMaf()'> <label for='isOptimExtra'>Отключить эффекты экстр</label> </li> -->
+
+            <li><input type='checkbox' id='isOptimChat' onchange='optimMaf()'> <label for='isOptimChat'>Отключить
+                    чат</label> </li>
+            <li><input type='checkbox' id='isOptimSmiles' onchange='optimMaf()'> <label for='isOptimSmiles'>Отключить
+                    смайлы</label> </li>
+            <li><input type='checkbox' id='isOptimAnimation' onchange='optimMaf()'> <label for='isOptimAnimation'>Выкл.
+                    анимацию</label> </li>
+
+            <div class="optim-elem">
+                <label>Обновление состояния игры</label>
+                <select class="menu_select" id='updateStateSpeed' onchange="changeSpeed('state')">
+                    <option value="400">0.4 с.</option>
+                    <option value="1000">1 с.</option>
+                    <option value="1500" selected>1.5с</option>
+                    <option value="2000">2 с.</option>
+                    <option value="3000">3 с.</option>
+                    <option value="4000">4 с.</option>
+                </select>
+            </div>
+
+            <div class="optim-elem">
+                <label>Обновление состояния дуэли</label>
+                <select class="menu_select" id='updateDuelSpeed' onchange="changeSpeed('duel')">
+                    <option value="300">0.3 с.</option>
+                    <option value="500">0.5 с.</option>
+                    <option value="1000">1 с.</option>
+                    <option value="1500">1.5с</option>
+                    <option value="2000" selected>2 с.</option>
+                    <option value="3000">3 с.</option>
+                    <option value="4000">4 с.</option>
+                </select>
+            </div>
+
+            <div class="optim-elem">
+                <label>Обновление экрана</label>
+                <select class="menu_select" id='updateMiscSpeed' onchange="changeSpeed('misc')">
+                    <option value="1000">1 с.</option>
+                    <option value="1500">1.5с</option>
+                    <option value="2000" selected>2 с.</option>
+                    <option value="3000">3 с.</option>
+                    <option value="4000">4 с.</option>
+                    <option value="8000">8 с.</option>
+                </select>
+            </div>
+        </div>
+
+        <hr>
+        <h4 onclick='hideElem("use", this)' class='show_button misc'>Использовать <a>-</a></h4>
+        <div id='use' flex>
+
+            <li><input type='checkbox' id='isUseAka'> <label for='isUseAka'>Ака</label></li>
+            <li><input type='checkbox' id='isUseBudili'> <label for='isUseBudili'>Будилы</label></li>
+            <li><input type='checkbox' id='isUseTable'> <label for='isUseTable'>Таблы</label></li>
+            <li><input type='checkbox' id='isUsePsih'> <label for='isUsePsih'>Психоз</label></li>
+            <li><input type='checkbox' id='isUseBuroctrat'> <label for='isUseBuroctrat'>Бюры</label></li>
+            <li><input type='checkbox' id='isUseIspi'> <label for='isUseIspi'>Испы</label></li>
+            <li><input type='checkbox' id='isUseDetector'> <label for='isUseDetector'>Детектор</label></li>
+            <li><input type='checkbox' id='isUseShadow'> <label for='isUseShadow'>Невидимку</label></li>
+            <li><input type='checkbox' id='isUseBlackLabel'> <label for='isUseBlackLabel'>Черную метку</label></li>
+            <li><input type='checkbox' id='isMolotov'> <label for='isMolotov'>Молотов</label></li>
+            <li><input type='checkbox' id='isDjoker'> <label for='isDjoker'>Джокер</label></li>
+            <li><input type='checkbox' id='isSteal'> <label for='isSteal'>Кража</label></li>
+            <li><input type='checkbox' id='isPoision'> <label for='isSteal'>Яд</label></li>
+            <li><input type='checkbox' id='isReanimSelf'> <label for='isReanimSelf'>Оживлять себя</label></li>
+            <li><input type='checkbox' id='isReanimSelfPeace'> <label for='isReanimSelfPeace'>Оживлять себя за
+                    мир</label></li>
+
+
+
+        </div>
+
+        <hr>
+        <h4 class='show_button misc' onclick='hideElem("buy", this)'>Покупать <a>-</a></h4>
+        <div id='buy' flex>
+            <li><input type='checkbox' id='isBuyActive'> <label for='isBuyActive'>Активка</label></li>
+			<li><input type='checkbox' id='isBuyKaska'> <label for='isBuyKaska'>Миноискатель</label></li>
+			<li><input type='checkbox' id='isBuyFreeze'> <label for='isBuyFreeze'>Антифриз</label></li>
+            <li><input type='checkbox' id='isBuyMina'> <label for='isBuyMina'>Мина</label></li>
+            <li><input type='checkbox' id='isBuyMaska'> <label for='isBuyMaska'>Маска</label></li>
+            <li><input type='checkbox' id='isBuyBug'> <label for='isBuyBug'>Жук</label></li>
+            <li><input type='checkbox' id='isBuyCar'> <label for='isBuyCar'>Машина</label></li>
+        </div>
+
+
+        <br>
+        <p class="canceledSpeed"></p>
+        <p class="takeAwardSpeed"></p>
+        <div id='current_duel_status' flex>
+            <div>
+                <select class="menu_select" id="on_menu_presets_select" onchange="changePresets()"></select>
+            </div>
+            <div><label>Оставить рубинов: <input type='text' class='inputtext' id='minRubyForDuel'> </div>
+            <div class="duel-speed-div">
+                <p>Экономно<input id="duelSpeedRange" type="range" min="1" max="5" step="1" value="1"
+                        onchange="duelSpeedRangeChange()">Быстро</p>
+                <p class="duel-speed-text"></p>
+            </div>
+
+            <div flex>
+                <div class="duel_status_item bronza">
+                    <h6 class="duel_status_title">Название</h6>
+                    <p class="duel_status_count">0/3</p>
+                    <select class="menu_select duel_status_select" onchange="changeDquest(0)">
+                        <option value='nothing'>Ничего не делать</option>
+                        <option value='cancel'>Отменять</option>
+                        <option value='doit'>Выполнять обычно</option>
+                        <option value='doitSuic'>Выполнять через суик</option>
+                    </select>
+                    <div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='changeDquestBronz'> <label
+                                class="duel-window-label" for='changeDquestBronz'>Отменять</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='dosrDquestBronz'> <label
+                                class="duel-window-label" for='dosrDquestBronz'>Досрочка</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='priorDquestBronz'> <label
+                                class="duel-window-label" for='priorDquestBronz'>Приоритет</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='simpleDquestBronza'>
+                            <label class="duel-window-label-simple" for='simpleDquestBronza'>Играть</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="duel_status_item zola">
+                    <h6 class="duel_status_title"> Название</h6>
+                    <p class="duel_status_count">0/3</p>
+                    <select class="menu_select duel_status_select" onchange="changeDquest(1)">
+                        <option value='nothing'>Ничего не делать</option>
+                        <option value='cancel'>Отменять</option>
+                        <option value='doit'>Выполнять обычно</option>
+                        <option value='doitSuic'>Выполнять через суик</option>
+                    </select>
+                    <div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='changeDquestSerebro'> <label
+                                class="duel-window-label" for='changeDquestSerebro'>Отменять</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='dosrDquestSerebro'> <label
+                                class="duel-window-label" for='dosrDquestSerebro'>Досрочка</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='priorDquestSerebro'> <label
+                                class="duel-window-label" for='priorDquestSerebro'>Приоритет</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='simpleDquestZola'>
+                            <label class="duel-window-label-simple" for='simpleDquestZola'>Играть</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="duel_status_item brul">
+                    <h6 class="duel_status_title"> Название</h6>
+                    <p class="duel_status_count">0/3</p>
+                    <select class="menu_select duel_status_select" onchange="changeDquest(2)">
+                        <option value='nothing'>Ничего не делать</option>
+                        <option value='cancel'>Отменять</option>
+                        <option value='doit'>Выполнять обычно</option>
+                        <option value='doitSuic'>Выполнять через суик</option>
+                    </select>
+                    <div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='changeDquestBrill'> <label
+                                class="duel-window-label" for='changeDquestBrill'>Отменять</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='dosrDquestBrill'>
+                            <label class="duel-window-label" for='dosrDquestBrill'>Досрочка</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='priorDquestBrill'>
+                            <label class="duel-window-label" for='priorDquestBrill'>Приоритет</label>
+                        </div>
+                        <div>
+                            <input class="duel-window-checkbox" type='checkbox' id='simpleDquestBrul'>
+                            <label class="duel-window-label-simple" for='simpleDquestBrul'>Играть</label>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div id='playbtn' flex>
+                <input class='playbtn' id="startDuelButton" type='button' onclick='startDuelPressed()'
+                    value='Играть дуэль'>
+            </div>
+        </div>
+    </div>
+
+
+
+    <hr>
+    <div id='subbtn' flex>
+        <input class='subbtn' type='button' onclick='_WND_proc("clans")' value='Клан'>
+        <input class='subbtn' type='button' onclick='_Duels();' value='Дуэль'>
+        <input class='subbtn' type='button' onclick='_WND_proc("top");' value='Топ'>
+        <input class='subbtn' type='button' onclick='_EventScene();' value='Ивент'>
+        <input class='subbtn' type='button' onclick='_WND_proc("arena");' value='Арена'>
+        <input class='subbtn' type='button' onclick='showDuelMenu()' value='Окошко дуэли'>
+        <input class='subbtn' type='button' onclick='_PRF();' value='Профиль'>
+        <a class='subbtn' href="https://vk.com/club179064577" target="_blank"> Группа в вк </a>
+    </div>
+    <hr>
+    <div id='playbtn' flex>
+        <input class='playbtn' id="startGameButton" type='button' onclick='startGamePressed()' value='Старт'>
+    </div>
+</div>
